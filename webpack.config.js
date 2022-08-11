@@ -1,10 +1,27 @@
 const path = require("path");
-
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
+  entry: {
+    bundle: "./src/main.ts",
+  },
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "public/js"),
+    path: path.join(__dirname, "dist"),
+    filename: "[name].js",
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    open: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: "ts-loader",
+      },
+    ],
   },
 };
