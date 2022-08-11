@@ -1,14 +1,15 @@
 import * as p5 from "p5";
 import { DefaultMap } from "./map/default_map.class";
 import { IMap } from "./map/imap.class";
+import { MapFactory } from "./map/map_factory.class";
 import { Player } from "./player.class";
 import * as util from "./util.class";
 
 export const sketch = (p: p5) => {
-  let map: IMap;
+  // let map: IMap;
   let player: Player;
   const setting = require("./setting.json");
-  console.log(setting.type);
+  const map = MapFactory.create(setting.type, p);
 
   let isSetting = true;
 
@@ -41,7 +42,7 @@ export const sketch = (p: p5) => {
   p.setup = () => {
     p.createCanvas(util.WINDOW_WIDTH, util.WINDOW_HEIGHT);
 
-    map = new DefaultMap(p);
+    // map = new DefaultMap(p);
     player = new Player(p);
   };
 

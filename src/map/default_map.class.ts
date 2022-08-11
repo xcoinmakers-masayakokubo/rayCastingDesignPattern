@@ -1,11 +1,14 @@
 import * as p5 from "p5";
 import * as util from "../util.class";
+import { AbstractMap } from "./abstract_map.class";
 import { IMap } from "./imap.class";
 
-export class DefaultMap implements IMap {
+export class DefaultMap extends AbstractMap {
   grid: number[][];
 
   constructor(private p: p5) {
+    super();
+
     this.grid = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -19,10 +22,6 @@ export class DefaultMap implements IMap {
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ];
-  }
-
-  isFloor(x: number, y: number) {
-    return this.grid[y][x] == 0;
   }
 
   // hasWallAt(x, y) {
