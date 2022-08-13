@@ -1,9 +1,8 @@
 import * as p5 from "p5";
-import * as util from "../util.class";
+import * as util from "../../util.class";
 import { AbstractMap } from "./abstract_map.class";
-import { IMap } from "./imap.class";
 
-export class DefaultMap extends AbstractMap {
+export class MazeMap extends AbstractMap {
   grid: number[][];
 
   constructor(private p: p5) {
@@ -11,14 +10,14 @@ export class DefaultMap extends AbstractMap {
 
     this.grid = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 1, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 1],
-      [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1],
-      [1, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 3, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 3, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ];
@@ -51,16 +50,7 @@ export class DefaultMap extends AbstractMap {
 
         this.p.stroke("#222");
         this.p.fill(tileColor);
-        this.p.rect(
-          // MINIMAP_SCALE_FACTOR * tileX,
-          // MINIMAP_SCALE_FACTOR * tileY,
-          // MINIMAP_SCALE_FACTOR * TILE_SIZE,
-          // MINIMAP_SCALE_FACTOR * TILE_SIZE
-          tileX,
-          tileY,
-          util.TILE_SIZE,
-          util.TILE_SIZE
-        );
+        this.p.rect(tileX, tileY, util.TILE_SIZE, util.TILE_SIZE);
       }
     }
   }
