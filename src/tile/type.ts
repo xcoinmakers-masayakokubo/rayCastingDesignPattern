@@ -1,1 +1,1 @@
-export type TYLE_TYPE = 0 | 1 | 2;
+export type TILE_TYPE = 0 | 1 | 2;

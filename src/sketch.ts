@@ -6,9 +6,7 @@ import { App } from "./app";
 export const sketch = (p: p5) => {
   const setting = require("./setting.json");
   const map = MapFactory.create(setting.type, p);
-  // const tiles = map.getTiles();
   const app = new App(p, map.getTiles());
-  // const player = tiles.filter((e) => e instanceof Player);
 
   p.setup = () => {
     p.createCanvas(util.WINDOW_WIDTH, util.WINDOW_HEIGHT);
@@ -33,14 +31,5 @@ export const sketch = (p: p5) => {
 
   p.keyReleased = () => {
     app.keyInput = { x: 0, y: 0 };
-    // if (p.keyCode == p.UP_ARROW) {
-    //   // player.walkDirection = 0;
-    // } else if (p.keyCode == p.DOWN_ARROW) {
-    //   // player.walkDirection = 0;
-    // } else if (p.keyCode == p.RIGHT_ARROW) {
-    //   // player.turnDirection = 0;
-    // } else if (p.keyCode == p.LEFT_ARROW) {
-    //   // player.turnDirection = 0;
-    // }
   };
 };
