@@ -1,8 +1,8 @@
 import * as p5 from "p5";
 import * as util from "../../util.class";
-import { AbstractMap } from "./abstract_map.class";
+import { AMap } from "./abstract_map.class";
 
-export class DefaultMap extends AbstractMap {
+export class DefaultMap extends AMap {
   grid: number[][];
 
   constructor(private p: p5) {
@@ -41,17 +41,17 @@ export class DefaultMap extends AbstractMap {
   //   return this.grid[mapGridIndexY][mapGridIndexX];
   // }
 
-  render() {
-    for (var i = 0; i < util.MAP_NUM_ROWS; i++) {
-      for (var j = 0; j < util.MAP_NUM_COLS; j++) {
-        const tileX = j * util.TILE_SIZE;
-        const tileY = i * util.TILE_SIZE;
-        const tileColor = this.grid[i][j] != 0 ? "#222" : "#fff";
+  // render() {
+  //   for (var i = 0; i < util.MAP_NUM_ROWS; i++) {
+  //     for (var j = 0; j < util.MAP_NUM_COLS; j++) {
+  //       const tileX = j * util.TILE_SIZE;
+  //       const tileY = i * util.TILE_SIZE;
+  //       const tileColor = this.grid[i][j] != 0 ? "#222" : "#fff";
 
-        this.p.stroke("#222");
-        this.p.fill(tileColor);
-        this.p.rect(tileX, tileY, util.TILE_SIZE, util.TILE_SIZE);
-      }
-    }
-  }
+  //       this.p.stroke("#222");
+  //       this.p.fill(tileColor);
+  //       this.p.rect(tileX, tileY, util.TILE_SIZE, util.TILE_SIZE);
+  //     }
+  //   }
+  // }
 }

@@ -1,6 +1,6 @@
 import * as p5 from "p5";
-import { IMap } from "./map/imap.class";
-import * as util from "./util.class";
+import { IMap } from "../map/map.interface";
+import * as util from "../util.class";
 
 export class Enemy {
   turnDirection = 0; // -1 if left, +1 if right

@@ -6,7 +6,11 @@ export const MAP_NUM_COLS = 15;
 export const WINDOW_WIDTH = MAP_NUM_COLS * TILE_SIZE;
 export const WINDOW_HEIGHT = MAP_NUM_ROWS * TILE_SIZE;
 
-export const PLAYER = 2;
+export const TILE = {
+  FLOOR: 0,
+  WALL: 1,
+  PLAYER: 2,
+} as const;
 
 // const FOV_ANGLE = 60 * (Math.PI / 180);
 

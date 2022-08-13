@@ -1,8 +1,8 @@
 import * as p5 from "p5";
-import { DefaultMap } from "./product/default_map.class";
-import { IMap } from "./imap.class";
-import { PlainMap } from "./product/plain_map.class";
-import { MazeMap } from "./product/maze_map.class";
+import { DefaultMap } from "./maps/default_map.class";
+import { IMap } from "./map.interface";
+import { PlainMap } from "./maps/plain_map.class";
+import { MazeMap } from "./maps/maze_map.class";
 
 const MAP_TYPE = {
   DEFAULT: "default",

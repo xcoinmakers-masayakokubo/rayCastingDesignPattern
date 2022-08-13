@@ -1,6 +1,6 @@
 import * as p5 from "p5";
-import { IMap } from "./map/imap.class";
-import * as util from "./util.class";
+import { IMap } from "../map/map.interface";
+import * as util from "../util.class";
 
 export class Player {
   turnDirection = 0;
@@ -19,10 +19,10 @@ export class Player {
     // }
     const newX = this.x + this.turnDirection;
     const newY = this.y + this.walkDirection;
-    if (map.isFloor(newX, newY)) {
-      this.x = newX;
-      this.y = newY;
-    }
+    // if (map.isFloor(newX, newY)) {
+    //   this.x = newX;
+    //   this.y = newY;
+    // }
   }
 
   render() {
