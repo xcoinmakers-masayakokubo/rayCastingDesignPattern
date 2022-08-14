@@ -1,8 +1,6 @@
+import * as p5 from "p5";
 import { ITile } from "../tile/tile.interface";
 
 export interface IMap {
-  // render(): void;
-  // isFloor(x: number, y: number): boolean;
-  // getPlayerCoordinate(): number[];
-  getTiles(): ITile[];
+  getTiles(p: p5): ITile[];
 }

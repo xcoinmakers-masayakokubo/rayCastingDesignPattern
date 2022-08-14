@@ -1,51 +1,36 @@
 import * as p5 from "p5";
 import * as util from "./util.class";
 import { ITile } from "./tile/tile.interface";
-import { PlayerTile } from "./tile/tiles/player_tile.class";
-import { WallTile } from "./tile/tiles/wall_tile.class";
-import { FloorTile } from "./tile/tiles/floor_tile.class";
+import { TileService } from "./tile/tile_servie.class";
+import { IMap } from "./map/map.interface";
+import { MapFactory } from "./map/map_factory.class";
 
 export class App {
-  player: PlayerTile;
-  keyInput = { x: 0, y: 0 };
+  tileService: TileService;
+  map: IMap;
 
-  constructor(private p: p5, public tiles: ITile[]) {
-    this.player = tiles.filter((e) => e instanceof PlayerTile)[0] as PlayerTile;
+  keyInput = { x: 0, y: 0 };
+  playerRate = 0;
+
+  constructor(private p: p5, public mapType: string) {
+    this.map = MapFactory.create(mapType, p);
+    this.tileService = new TileService(this.map.getTiles(p));
   }
 
   update() {
-    const nextTileIndex =
-      this.player.getIndex() +
-      this.keyInput.x +
-      this.keyInput.y * util.MAP_NUM_COLS;
-    const nextTile = this.tiles[nextTileIndex];
+    this.playerRate++;
 
-    if (nextTile instanceof FloorTile) {
-      const [px, py] = this.player.getCoordinate();
-      const [npx, npy] = [nextTile.x, nextTile.y];
-
-      nextTile.update(px, py);
-      this.player.update(npx, npy);
-
-      this.swap(this.player, nextTile);
+    if (this.playerRate > 1) {
+      this.playerRate = 0;
+      this.tileService.updatePlayer(this.keyInput);
     }
   }
 
-  swap(c: ITile, n: ITile) {
-    const tmp = n;
-    this.tiles[c.getIndex()] = this.tiles[n.getIndex()];
-    this.tiles[n.getIndex()] = tmp;
-  }
-
   draw() {
-    this.tiles
+    this.tileService.tiles
       .filter((e) => e.isDerty)
       .forEach((e) => {
-        const [x, y] = e.getTileCoordinate();
-
-        this.p.fill(e.color);
-        this.p.rect(x, y, util.TILE_SIZE, util.TILE_SIZE);
-
+        e.draw();
         e.clean();
       });
   }

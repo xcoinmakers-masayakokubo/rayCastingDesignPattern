@@ -1,4 +1,4 @@
-import { TILE_TYPE } from "./type";
+import { TILE_TYPE } from "./type/tile_type";
 
 export interface ITile {
   isDerty: boolean;
@@ -7,6 +7,7 @@ export interface ITile {
   y: number;
   type: TILE_TYPE;
   update(x: number, y: number): void;
+  draw(): void;
   clean(): void;
   getCoordinate(): number[];
   getTileCoordinate(): number[];

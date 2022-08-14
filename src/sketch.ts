@@ -5,8 +5,7 @@ import { App } from "./app";
 
 export const sketch = (p: p5) => {
   const setting = require("./setting.json");
-  const map = MapFactory.create(setting.type, p);
-  const app = new App(p, map.getTiles());
+  const app = new App(p, setting.type);
 
   p.setup = () => {
     p.createCanvas(util.WINDOW_WIDTH, util.WINDOW_HEIGHT);

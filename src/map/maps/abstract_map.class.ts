@@ -1,9 +1,11 @@
 import { FloorTile } from "../../tile/tiles/floor_tile.class";
 import { PlayerTile } from "../../tile/tiles/player_tile.class";
 import { ITile } from "../../tile/tile.interface";
-import { WallTile } from "../../tile/tiles/wall_tile.class";
 import { MAP_NUM_COLS, TILE } from "../../util.class";
 import { IMap } from "../map.interface";
+import { WallTile } from "../../tile/tiles/wall_tile.class copy";
+import { EnemyTile } from "../../tile/tiles/enemy_tile.class";
+import * as p5 from "p5";
 
 export abstract class AMap implements IMap {
   grid: number[][];
@@ -24,7 +26,7 @@ export abstract class AMap implements IMap {
     ];
   }
 
-  getTiles(): ITile[] {
+  getTiles(p: p5): ITile[] {
     return this.grid
       .reduce((p, n) => [...p, ...n])
       .map((e, i) => {
@@ -33,11 +35,15 @@ export abstract class AMap implements IMap {
 
         switch (e) {
           case TILE.FLOOR:
-            return new FloorTile(x, y);
+            return new FloorTile(p, x, y);
           case TILE.WALL:
-            return new WallTile(x, y);
+            return new WallTile(p, x, y);
           case TILE.PLAYER:
-            return new PlayerTile(x, y);
+            return new PlayerTile(p, x, y);
+          case TILE.ENEMY_R:
+            return new EnemyTile(p, x, y, TILE.ENEMY_R);
+          case TILE.ENEMY_A:
+            return new EnemyTile(p, x, y, TILE.ENEMY_A);
           default:
             throw new Error("error");
         }

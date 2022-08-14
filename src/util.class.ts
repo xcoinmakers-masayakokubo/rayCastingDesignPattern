@@ -10,6 +10,8 @@ export const TILE = {
   FLOOR: 0,
   WALL: 1,
   PLAYER: 2,
+  ENEMY_R: 3,
+  ENEMY_A: 4,
 } as const;
 
 // const FOV_ANGLE = 60 * (Math.PI / 180);

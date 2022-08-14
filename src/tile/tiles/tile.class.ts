@@ -1,11 +1,13 @@
 import { ITile } from "../tile.interface";
-import { TILE_TYPE } from "../type";
+import { TILE_TYPE } from "../type/tile_type";
 import * as util from "../../util.class";
+import * as p5 from "p5";
 
 export abstract class Tile implements ITile {
   isDerty = true;
 
   constructor(
+    public p: p5,
     public type: TILE_TYPE,
     public x: number,
     public y: number,
@@ -16,6 +18,13 @@ export abstract class Tile implements ITile {
     this.isDerty = !this.isDerty;
     this.x = x;
     this.y = y;
+  }
+
+  draw() {
+    const [x, y] = this.getTileCoordinate();
+
+    this.p.fill(this.color);
+    this.p.rect(x, y, util.TILE_SIZE, util.TILE_SIZE);
   }
 
   clean() {
