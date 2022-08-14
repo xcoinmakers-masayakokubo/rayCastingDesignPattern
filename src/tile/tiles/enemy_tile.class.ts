@@ -24,4 +24,8 @@ export class EnemyTile extends Tile {
       throw new Error("error");
     }
   }
+
+  getNextIndex(): number {
+    return this.algorithm.getNextIndex(this.getIndex());
+  }
 }

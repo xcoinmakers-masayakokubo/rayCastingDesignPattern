@@ -1,3 +1,3 @@
 export interface IAlgorithm {
-  getNextCordinate(): number[];
+  getNextIndex(currentIndex: number): number;
 }
