@@ -1,11 +1,9 @@
-import * as p5 from "p5";
-import * as util from "../../util.class";
 import { AMap } from "./abstract_map.class";
 
 export class MazeMap extends AMap {
   grid: number[][];
 
-  constructor(private p: p5) {
+  constructor() {
     super();
 
     this.grid = [

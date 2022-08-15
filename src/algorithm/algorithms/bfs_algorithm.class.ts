@@ -1,7 +1,7 @@
 import { IAlgorithm } from "../algorithm.interface";
 import * as util from "../../util.class";
 
-export class RandomAlgorithm implements IAlgorithm {
+export class BfsAlgorithm implements IAlgorithm {
   getNextIndex(currentIndex: number) {
     const randomNumber = Math.floor(Math.random() * 4);
     let x, y;

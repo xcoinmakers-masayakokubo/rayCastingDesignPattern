@@ -1,5 +1,4 @@
 import * as p5 from "p5";
-import { MapFactory } from "./map/map_factory.class";
 import * as util from "./util.class";
 import { App } from "./app";
 

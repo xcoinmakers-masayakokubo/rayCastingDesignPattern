@@ -1,13 +1,13 @@
 import { ITile } from "../tile.interface";
 import { TILE_TYPE } from "../type/tile_type";
 import * as util from "../../util.class";
-import * as p5 from "p5";
+import { IDrawer } from "../../drawer/adaptor/drawer.interface";
 
 export abstract class Tile implements ITile {
   isDerty = true;
 
   constructor(
-    public p: p5,
+    public drawer: IDrawer,
     public type: TILE_TYPE,
     public x: number,
     public y: number,
@@ -22,9 +22,7 @@ export abstract class Tile implements ITile {
 
   draw() {
     const [x, y] = this.getTileCoordinate();
-
-    this.p.fill(this.color);
-    this.p.rect(x, y, util.TILE_SIZE, util.TILE_SIZE);
+    this.drawer.tile(x, y, this.color);
   }
 
   clean() {

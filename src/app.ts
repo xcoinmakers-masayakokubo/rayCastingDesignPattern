@@ -3,18 +3,22 @@ import * as util from "./util.class";
 import { TileService } from "./tile/tile_servie.class";
 import { IMap } from "./map/map.interface";
 import { MapFactory } from "./map/map_factory.class";
+import { IDrawer } from "./drawer/adaptor/drawer.interface";
+import { P5Adaptor } from "./drawer/adaptor/p5_adaptor.class";
 
 export class App {
   tileService: TileService;
   map: IMap;
   isGameOver = false;
+  drawer: IDrawer;
 
   keyInput = { x: 0, y: 0 };
   rate = 0;
 
   constructor(private p: p5, public mapType: string) {
-    this.map = MapFactory.create(mapType, p);
-    this.tileService = new TileService(this.map.getTiles(p));
+    this.drawer = new P5Adaptor(p);
+    this.map = MapFactory.create(mapType);
+    this.tileService = new TileService(this.map.getTiles(this.drawer));
   }
 
   update() {
@@ -39,21 +43,15 @@ export class App {
 
   draw() {
     if (this.isGameOver) {
-      this.p.fill("#000");
-      this.p.rect(
-        0,
-        0,
-        util.TILE_SIZE * util.MAP_NUM_COLS,
-        util.TILE_SIZE * util.MAP_NUM_ROWS
-      );
-      this.p.background(50);
-      this.p.noStroke();
-      this.p.fill(255);
-      this.p.textSize(100);
-      this.p.text(
+      // if (true) {
+      this.drawer.background("#000");
+      this.drawer.text(
         "Game Over",
         util.WINDOW_WIDTH / 5,
-        util.WINDOW_HEIGHT / 2 + 50
+        util.WINDOW_HEIGHT / 2 + 50,
+        100,
+        250,
+        50
       );
     } else {
       this.tileService.tiles
