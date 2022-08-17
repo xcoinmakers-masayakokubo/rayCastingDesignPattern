@@ -1,3 +1,5 @@
+import { ITile } from "../tile/tile.interface";
+
 export interface IAlgorithm {
-  getNextIndex(currentIndex: number): number;
+  getNextIndex(tile: ITile[]): number;
 }

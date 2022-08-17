@@ -1,8 +1,13 @@
 import { IAlgorithm } from "../algorithm.interface";
 import * as util from "../../util.class";
+import { TILE } from "../../util.class";
+import { ITile } from "../../tile/tile.interface";
 
 export class RandomAlgorithm implements IAlgorithm {
-  getNextIndex(currentIndex: number) {
+  getNextIndex(tiles: ITile[]) {
+    const currentIndex = tiles.find((e) => e.type === TILE.ENEMY)?.getIndex();
+    if (currentIndex === undefined) throw new Error();
+
     const randomNumber = Math.floor(Math.random() * 4);
     let x, y;
 
