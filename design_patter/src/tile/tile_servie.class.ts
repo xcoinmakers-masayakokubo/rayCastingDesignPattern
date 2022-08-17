@@ -14,7 +14,7 @@ export class TileService {
   }
 
   updateEnemy() {
-    const nextTileIndex = this.enemy.getNextIndex();
+    const nextTileIndex = this.enemy.getNextIndex(this.tiles);
     const nextTile = this.tiles[nextTileIndex];
 
     if (nextTile instanceof FloorTile) {

@@ -1,6 +1,7 @@
 import { IAlgorithm } from "../../algorithm/algorithm.interface";
 import { IDrawer } from "../../drawer/adaptor/drawer.interface";
 import { TILE } from "../../util.class";
+import { ITile } from "../tile.interface";
 import { Tile } from "./tile.class";
 
 export class EnemyTile extends Tile {
@@ -13,7 +14,7 @@ export class EnemyTile extends Tile {
     super(drawer, TILE.ENEMY, x, y, "#00F");
   }
 
-  getNextIndex(): number {
-    return this.algorithm.getNextIndex(this.getIndex());
+  getNextIndex(tiles: ITile[]): number {
+    return this.algorithm.getNextIndex(tiles);
   }
 }
