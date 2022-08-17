@@ -12,3 +12,9 @@ export const TILE = {
   PLAYER: 2,
   ENEMY: 3,
 } as const;
+
+export const MAP_TYPE = {
+  DEFAULT: "default",
+  PLAIN: "plain",
+  MAZE: "maze",
+} as const;

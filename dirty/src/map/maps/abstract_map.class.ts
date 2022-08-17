@@ -6,8 +6,6 @@ import { IMap } from "../map.interface";
 import { WallTile } from "../../tile/tiles/wall_tile.class copy";
 import { EnemyTile } from "../../tile/tiles/enemy_tile.class";
 import { IDrawer } from "../../drawer/adaptor/drawer.interface";
-// import { RandomAlgorithm } from "../../algorithm/algorithms/random_ algorithm.class";
-import { BfsAlgorithm } from "../../algorithm/algorithms/bfs_algorithm.class";
 import { RandomAlgorithm } from "../../algorithm/algorithms/random_ algorithm.class";
 
 export abstract class AMap implements IMap {
@@ -50,9 +48,5 @@ export abstract class AMap implements IMap {
             throw new Error("error");
         }
       });
-  }
-
-  copy() {
-    return this.grid.map((e) => [...e]);
   }
 }

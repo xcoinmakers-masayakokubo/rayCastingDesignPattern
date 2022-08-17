@@ -15,6 +15,7 @@ module.exports = {
       directory: path.join(__dirname, "dist"),
     },
     open: true,
+    port: 8082,
   },
   module: {
     rules: [

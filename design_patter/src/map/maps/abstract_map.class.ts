@@ -51,8 +51,4 @@ export abstract class AMap implements IMap {
         }
       });
   }
-
-  copy() {
-    return this.grid.map((e) => [...e]);
-  }
 }

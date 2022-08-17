@@ -1,10 +1,13 @@
 import * as p5 from "p5";
 import * as util from "./util.class";
+import { MAP_TYPE } from "./util.class";
 import { TileService } from "./tile/tile_servie.class";
 import { IMap } from "./map/map.interface";
-import { MapFactory } from "./map/map_factory.class";
 import { IDrawer } from "./drawer/adaptor/drawer.interface";
 import { P5Adaptor } from "./drawer/adaptor/p5_adaptor.class";
+import { DefaultMap } from "./map/maps/default_map.class";
+import { PlainMap } from "./map/maps/plain_map.class";
+import { MazeMap } from "./map/maps/maze_map.class";
 
 export class App {
   tileService: TileService;
@@ -17,8 +20,21 @@ export class App {
 
   constructor(private p: p5, public mapType: string) {
     this.drawer = new P5Adaptor(p);
-    this.map = MapFactory.create(mapType);
+    this.map = this.setMap(mapType);
     this.tileService = new TileService(this.map.getTiles(this.drawer));
+  }
+
+  setMap(mapType: string) {
+    switch (mapType) {
+      case MAP_TYPE.DEFAULT:
+        return new DefaultMap();
+      case MAP_TYPE.PLAIN:
+        return new PlainMap();
+      case MAP_TYPE.MAZE:
+        return new MazeMap();
+      default:
+        throw new Error();
+    }
   }
 
   update() {
