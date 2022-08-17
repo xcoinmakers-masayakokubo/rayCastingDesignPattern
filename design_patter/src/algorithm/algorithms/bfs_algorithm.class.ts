@@ -3,7 +3,7 @@ import { MAP_NUM_COLS, MAP_NUM_ROWS, TILE } from "../../util.class";
 import { ITile } from "../../tile/tile.interface";
 
 export class BfsAlgorithm implements IAlgorithm {
-  constructor(private grid: number[][]) {}
+  constructor() {}
 
   getNextIndex(tiles: ITile[]): number {
     const currentIndex = tiles.find((e) => e.type === TILE.ENEMY)?.getIndex();

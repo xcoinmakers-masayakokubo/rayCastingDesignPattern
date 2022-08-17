@@ -8,6 +8,7 @@ import { EnemyTile } from "../../tile/tiles/enemy_tile.class";
 import { IDrawer } from "../../drawer/adaptor/drawer.interface";
 // import { RandomAlgorithm } from "../../algorithm/algorithms/random_ algorithm.class";
 import { BfsAlgorithm } from "../../algorithm/algorithms/bfs_algorithm.class";
+import { RandomAlgorithm } from "../../algorithm/algorithms/random_ algorithm.class";
 
 export abstract class AMap implements IMap {
   grid: number[][];
@@ -43,8 +44,8 @@ export abstract class AMap implements IMap {
           case TILE.PLAYER:
             return new PlayerTile(drawer, x, y);
           case TILE.ENEMY:
-            // return new EnemyTile(drawer, x, y, new RandomAlgorithm());
-            return new EnemyTile(drawer, x, y, new BfsAlgorithm(this.copy()));
+            return new EnemyTile(drawer, x, y, new RandomAlgorithm());
+          // return new EnemyTile(drawer, x, y, new BfsAlgorithm());
           default:
             throw new Error("error");
         }
