@@ -1,6 +1,6 @@
-import { IDrawer } from "../drawer/adaptor/drawer.interface";
+import * as p5 from "p5";
 import { ITile } from "../tile/tile.interface";
 
 export interface IMap {
-  getTiles(drawer: IDrawer): ITile[];
+  getTiles(p: p5): ITile[];
 }

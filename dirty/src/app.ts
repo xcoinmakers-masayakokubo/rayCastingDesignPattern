@@ -3,8 +3,6 @@ import * as util from "./util.class";
 import { MAP_TYPE } from "./util.class";
 import { TileService } from "./tile/tile_servie.class";
 import { IMap } from "./map/map.interface";
-import { IDrawer } from "./drawer/adaptor/drawer.interface";
-import { P5Adaptor } from "./drawer/adaptor/p5_adaptor.class";
 import { DefaultMap } from "./map/maps/default_map.class";
 import { PlainMap } from "./map/maps/plain_map.class";
 import { MazeMap } from "./map/maps/maze_map.class";
@@ -13,15 +11,13 @@ export class App {
   tileService: TileService;
   map: IMap;
   isGameOver = false;
-  drawer: IDrawer;
 
   keyInput = { x: 0, y: 0 };
   rate = 0;
 
   constructor(private p: p5, public mapType: string) {
-    this.drawer = new P5Adaptor(p);
     this.map = this.setMap(mapType);
-    this.tileService = new TileService(this.map.getTiles(this.drawer));
+    this.tileService = new TileService(this.map.getTiles(p));
   }
 
   setMap(mapType: string) {
@@ -59,15 +55,14 @@ export class App {
 
   draw() {
     if (this.isGameOver) {
-      this.drawer.background("#000");
-      this.drawer.text(
-        "Game Over",
-        util.WINDOW_WIDTH / 5,
-        util.WINDOW_HEIGHT / 2 + 50,
-        100,
-        250,
-        50
-      );
+      this.p.fill("#000");
+      this.p.rect(0, 0, util.TILE_SIZE * util.MAP_NUM_COLS, util.TILE_SIZE * util.MAP_NUM_ROWS);
+
+      this.p.background(50);
+      this.p.noStroke();
+      this.p.fill(250);
+      this.p.textSize(100);
+      this.p.text("Game Over", util.WINDOW_WIDTH / 5, util.WINDOW_HEIGHT / 2 + 50);
     } else {
       this.tileService.tiles
         .filter((e) => e.isDerty)

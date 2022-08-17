@@ -5,8 +5,7 @@ import { MAP_NUM_COLS, TILE } from "../../util.class";
 import { IMap } from "../map.interface";
 import { WallTile } from "../../tile/tiles/wall_tile.class copy";
 import { EnemyTile } from "../../tile/tiles/enemy_tile.class";
-import { IDrawer } from "../../drawer/adaptor/drawer.interface";
-import { RandomAlgorithm } from "../../algorithm/algorithms/random_ algorithm.class";
+import * as p5 from "p5";
 
 export abstract class AMap implements IMap {
   grid: number[][];
@@ -27,7 +26,7 @@ export abstract class AMap implements IMap {
     ];
   }
 
-  getTiles(drawer: IDrawer): ITile[] {
+  getTiles(p: p5): ITile[] {
     return this.grid
       .reduce((p, n) => [...p, ...n])
       .map((e, i) => {
@@ -36,16 +35,15 @@ export abstract class AMap implements IMap {
 
         switch (e) {
           case TILE.FLOOR:
-            return new FloorTile(drawer, x, y);
+            return new FloorTile(p, x, y);
           case TILE.WALL:
-            return new WallTile(drawer, x, y);
+            return new WallTile(p, x, y);
           case TILE.PLAYER:
-            return new PlayerTile(drawer, x, y);
+            return new PlayerTile(p, x, y);
           case TILE.ENEMY:
-            return new EnemyTile(drawer, x, y, new RandomAlgorithm());
-          // return new EnemyTile(drawer, x, y, new BfsAlgorithm());
+            return new EnemyTile(p, x, y);
           default:
-            throw new Error("error");
+            throw new Error();
         }
       });
   }

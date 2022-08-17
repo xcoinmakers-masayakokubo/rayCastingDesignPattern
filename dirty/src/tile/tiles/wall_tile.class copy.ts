@@ -1,9 +1,9 @@
-import { IDrawer } from "../../drawer/adaptor/drawer.interface";
+import * as p5 from "p5";
 import { TILE } from "../../util.class";
 import { Tile } from "./tile.class";
 
 export class WallTile extends Tile {
-  constructor(public drawer: IDrawer, public x: number, public y: number) {
-    super(drawer, TILE.WALL, x, y, "#222");
+  constructor(public p: p5, public x: number, public y: number) {
+    super(p, TILE.WALL, x, y, "#222");
   }
 }

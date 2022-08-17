@@ -18,3 +18,8 @@ export const MAP_TYPE = {
   PLAIN: "plain",
   MAZE: "maze",
 } as const;
+
+export const ALGORITHM_TYPE = {
+  RANDOM: "random",
+  BFS: "bfs",
+} as const;
